@@ -29,14 +29,14 @@
         required
       /><br />
       <label for="Categoria">Categoria:</label><br />
-      <inout type="text" list="faixa">
-      <datalist id ="faixa">  
-        <option id.categoria="Normal"></option>
-        <option id.categoria="Especial"></option>
-        <option id.categoria="Gourmet"></option>
-        <option id.categoria="Palito"></option>
-
-      ><br /><br />
+        <select id="categoria" name="categoria">
+        {% for categoria in categorias %}
+        <option value="{{ id.categoria }}">"Normal"</option>
+        <option value="{{ id.categoria }}">"Especial"</option>
+        <option value="{{ id.categoria }}">"Gourmet"</option>
+        <option value="{{ id.categoria }}">"Palito"</option>
+        {% endfor %}</select>
+      <br /><br />
       <button type="submit">Adicionar</button>
     </form>
   </body>
