@@ -8,7 +8,7 @@
 
   <body>
     <h1>Adicionar Novo Sorvete</h1>
-    <form action="adicionar_sorvete" method="post">
+    <form action="{{url_for('sorveteria.listar_sorvetes')}}" method="post">
       <label for="sabor">Sabor:</label><br />
       <input type="text" id="sabor" name="sabor" required /><br />
       <label for="preco">Preço (R$):</label><br />
@@ -31,10 +31,7 @@
       <label for="Categoria">Categoria:</label><br />
         <select id="categoria" name="categoria">
         {% for categoria in categorias %}
-        <option value="{{ id.categoria }}">"Normal"</option>
-        <option value="{{ id.categoria }}">"Especial"</option>
-        <option value="{{ id.categoria }}">"Gourmet"</option>
-        <option value="{{ id.categoria }}">"Palito"</option>
+        <option value="{{ id.categoria }}" >{{categoria.nome}}</option>
         {% endfor %}</select>
       <br /><br />
       <button type="submit">Adicionar</button>
