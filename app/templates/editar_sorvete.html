@@ -1,0 +1,26 @@
+<!-- app/templates/editar_sorvete.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Sorvete</title>
+</head>
+<body>
+    <h1>Editar Sorvete</h1>
+    <form method="post">
+        <label for="sabor">Sabor:</label><br>
+        <input type="text" id="sabor" name="sabor" value="{{ sorvete.sabor }}" required><br>
+        <label for="preco">Preço (R$):</label><br>
+        <input type="number" id="preco" name="preco" step="0.01" min="0" value="{{ sorvete.preco }}" required><br>
+        <label for="quantidade_estoque">Quantidade em Estoque:</label><br>
+        <input type="number" id="quantidade_estoque" name="quantidade_estoque" min="0" value="{{ sorvete.quantidade_estoque }}" required><br>
+        <label for="categoria">Categoria:</label><br>
+        <select id="categoria" name="categoria">
+            {% for categoria in categorias %}
+                <option value="{{ categoria.id }}" {% if categoria.id == sorvete.categoria_id %}selected{% endif %}>{{ categoria.nome }}</option>
+            {% endfor %}
+        </select><br><br>
+        <button type="submit">Salvar</button>
+    </form>
+</body>
+</html>

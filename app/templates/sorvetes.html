@@ -1,0 +1,46 @@
+<!-- app/templates/sorvetes.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sorvetes</title>
+  </head>
+  <body>
+    <h1>Sorvetes Disponíveis</h1>
+    <p>
+      <a href="{{ url_for('sorveteria.adicionar_sorvete') }}"
+        >Adicionar Novo Sorvete</a
+      >
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Sabor</th>
+          <th>Categoria</th>
+          <th>Preço (R$)</th>
+          <th>Quantidade em Estoque</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for sorvete in sorvetes %}
+        <tr>
+          <td>{{ sorvete.sabor }}</td>
+          <td>{{ sorvete.categoria.nome }}</td>
+          <td>{{ sorvete.preco }}</td>
+          <td>{{ sorvete.quantidade_estoque }}</td>
+          <td>
+            <a
+              href="{{ url_for('sorveteria.editar_sorvete', sorvete_id=sorvete.id) }}"
+              >Editar</a
+            >
+            <form method="post" style="display: inline">
+              <button type="submit">Excluir</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

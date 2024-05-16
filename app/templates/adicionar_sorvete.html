@@ -1,0 +1,43 @@
+<!-- app/templates/adicionar_sorvete.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Adicionar Sorvete</title>
+  </head>
+
+  <body>
+    <h1>Adicionar Novo Sorvete</h1>
+    <form action="adicionar_sorvete" method="post">
+      <label for="sabor">Sabor:</label><br />
+      <input type="text" id="sabor" name="sabor" required /><br />
+      <label for="preco">Preço (R$):</label><br />
+      <input
+        type="number"
+        id="preco"
+        name="preco"
+        step="0.01"
+        min="0"
+        required
+      /><br />
+      <label for="quantidade_estoque">Quantidade em Estoque:</label><br />
+      <input
+        type="number"
+        id="quantidade_estoque"
+        name="quantidade_estoque"
+        min="0"
+        required
+      /><br />
+      <label for="Categoria">Categoria:</label><br />
+      <inout type="text" list="faixa">
+      <datalist id ="faixa">  
+        <option id.categoria="Normal"></option>
+        <option id.categoria="Especial"></option>
+        <option id.categoria="Gourmet"></option>
+        <option id.categoria="Palito"></option>
+
+      ><br /><br />
+      <button type="submit">Adicionar</button>
+    </form>
+  </body>
+</html>
