@@ -1,8 +1,11 @@
 import os
 from config import app,db
 from app.view  import sorveteria_blueprint
+from app.categoria.view_categoria import categoria_blueprint
 
 
+
+app.register_blueprint(categoria_blueprint)
 app.register_blueprint(sorveteria_blueprint)
 
 

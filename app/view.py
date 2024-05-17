@@ -1,7 +1,8 @@
 # app/views.py
 from flask import Blueprint, render_template, redirect, url_for, request, jsonify
 
-from app.models import Sorvete, Categoria, db, SorveteNaoEncontrado
+from app.models import Sorvete, db, SorveteNaoEncontrado
+from app.categoria.categoria_model import Categoria
 
 sorveteria_blueprint = Blueprint('sorveteria', __name__)
 
@@ -9,7 +10,7 @@ sorveteria_blueprint = Blueprint('sorveteria', __name__)
 def index():
     return render_template('index.html')
 
-@sorveteria_blueprint.route('/sorvetes', methods=['GET'])
+@sorveteria_blueprint.route('/sorvetes', methods=['GET', 'POST'])
 def listar_sorvetes():
     try:
         sorvetes = Sorvete.query.all()
@@ -34,7 +35,6 @@ def adicionar_sorvete():
             preco = float(request.form['preco'])
             quantidade_estoque = int(request.form['quantidade_estoque'])
             categoria_id = int(request.form['categoria'])
-
             sorvete = Sorvete(sabor=sabor, preco=preco, quantidade_estoque=quantidade_estoque, categoria_id=categoria_id)
             db.session.add(sorvete)
             db.session.commit()
@@ -47,10 +47,7 @@ def adicionar_sorvete():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-
-
-
-        
+   
 
 @sorveteria_blueprint.route('/editar_sorvete/<int:sorvete_id>', methods=['GET', 'POST'])
 def editar_sorvete(sorvete_id):
