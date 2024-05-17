@@ -1,6 +1,6 @@
 # app/models.py
 from config import db
-
+from app.categoria.categoria_model import Categoria
 
 class Sorvete(db.Model):
     id = db.Column(db.Integer, primary_key=True)

@@ -1,7 +1,7 @@
 # app/views.py
 from flask import Blueprint, render_template, redirect, url_for, request, jsonify
 
-from app.models import Sorvete, db, SorveteNaoEncontrado
+from app.models import Sorvete, db, SorveteNaoEncontrado, listar_sorvetes
 from app.categoria.categoria_model import Categoria
 
 sorveteria_blueprint = Blueprint('sorveteria', __name__)
@@ -10,8 +10,19 @@ sorveteria_blueprint = Blueprint('sorveteria', __name__)
 def index():
     return render_template('index.html')
 
-@sorveteria_blueprint.route('/sorvetes', methods=['GET', 'POST'])
+@sorveteria_blueprint.route('/sorvetes', methods=['GET'])
+def get_sorvetes():
+    try:
+        sorvetes = listar_sorvetes()
+        return render_template('sorvetes.html', sorvetes=sorvetes)
+    except SorveteNaoEncontrado:
+        return jsonify({'message': 'Sorvete não encontrado'}), 404
+
 def listar_sorvetes():
+    return Sorvete.query.all()
+
+@sorveteria_blueprint.route('/sorvetes', methods=['GET', 'POST'])
+def lista_sorvetes():
     try:
         sorvetes = Sorvete.query.all()
         return render_template('sorvetes.html', sorvetes=sorvetes)
